@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    //特点：长度可变，类型可变
+    var arr=[1,2,3,4,5];
+    arr[6]=6;
+    arr[7]='hello';
+
+    // alert(arr[6]);
+    // alert(arr[7]);
+
+    //遍历
+    for(var i=0;i<arr.length;i++){
+        console.log(arr[i]);
+    }
+
+
+    //foreach遍历有值的
+    // arr.forEach(element => {
+    //     console.log(element);
+    // });
+
+    //添加
+    arr.push(1,2,3);
+    console.log(arr);
+
+    //删除
+    arr.splice(0,2);
+
+
+</script>
+</html>

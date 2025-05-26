@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Events Example</title>
+    <style>
+        #hoverBox {
+            width: 200px;
+            height: 200px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 200px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body onload="onload()">
+    <button id="myButton">Click Me!</button>
+    <p id="output"></p>
+    <div id="hoverBox">Hover over me!</div>
+    <p id="hoverOutput"></p>
+
+    <script>
+        function onload() {
+            console.log('Page loaded!');
+        }
+
+        // Click event
+        document.getElementById('myButton').addEventListener('click', function() {
+            document.getElementById('output').textContent = 'Button was clicked!';
+        });
+
+        // Mouseover event
+        document.getElementById('hoverBox').addEventListener('mouseover', function() {
+            document.getElementById('hoverOutput').textContent = 'Mouse is over the box!';
+            document.getElementById('hoverBox').style.backgroundColor = 'lightgreen';
+        });
+
+        // Mouseout event
+        document.getElementById('hoverBox').addEventListener('mouseout', function() {
+            document.getElementById('hoverOutput').textContent = 'Mouse left the box!';
+            document.getElementById('hoverBox').style.backgroundColor = 'lightblue';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    span{
+        color: aqua;
+    }
+</style>
+<body>
+    <span>Hello</span>
+</body>
+<script>
+    //输出语句
+    //警告框
+    // window.alert("不要看了！");
+    // alert("hello,world!");
+    // console.log("hello,world!");
+
+    //变量
+    // var a = 10;
+    // a="小明"
+    // alert(a);
+
+    {
+        //b是全局变量
+        var b = 20;
+        //可以重复定义
+        var b = 30;
+
+        //只在代码块中有效
+        let d=40;
+
+    }
+    //const 常量
+    const c=10;
+    //不支持重定义
+    // const c=10;
+
+    //只在代码块中定义
+    
+    //不支持重定义
+    // let d=30;
+
+    alert(typeof(b));
+
+    var aa=10;
+    var bb="10";
+    //alert(aa===bb);//不会类型转换
+    //alert(aa==bb);//会类型转换
+    //=== 比较值和类型 ==
+
+    parseInt(b);
+    //字符串转数字
+    alert(typeof(b));
+    document.write(b);
+
+    //其他类型转换Boolean
+    //除了0 null undefined NaN false ''
+    //其他都是true
+
+    if(0){
+        alert("0是false");
+    }
+    if(null){
+        alert("null是false");
+    }
+    if(undefined){
+        alert("undefined是false");
+    }
+    if(NaN){
+        alert("NaN是false");
+    }
+    if(false){
+        alert("false是false");
+    }
+    if(""){
+        alert("''是false");
+    }
+    if(" "){
+        alert("' '是true");
+    }
+
+
+
+
+    alert(d);
+
+</script>
+</html>

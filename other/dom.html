@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+        #img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <img src="#" alt="啥也没有~" id="img">
+    <div>你好</div>
+    <div>你好</div>
+    <div>你好</div>
+
+    <h4 class="cl"></h4>
+    <h4 class="cl"></h4>
+    <h4 class="cl"></h4>
+
+    <input type="checkbox" name="hobby">看书
+    <input type="checkbox" name="hobby">看电影
+    <input type="checkbox" name="hobby">跑步
+</body>
+<script>
+    //获取单个element
+    var a= document.getElementById("img")
+    a.src="../孙.jpg";
+
+    //通过class获取元素
+    var b=document.getElementsByClassName("cl")
+    for(var i=0;i<b.length;i++){
+        b[i].innerHTML="hello h4"
+    }
+
+    //通过标签名获取元素
+    var c=document.getElementsByTagName("div")
+    for(var i=0;i<c.length;i++){
+        c[i].innerHTML+="<font color='red'>vary good</font>"
+    }
+    //通过name获得
+    var d=document.getElementsByName("hobby")
+    for(var i=0;i<d.length;i++){
+        d[i].checked=true;
+    }
+
+
+
+</script>
+
+</html>
