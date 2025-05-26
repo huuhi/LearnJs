@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //数组
+    let array = ['a', 'b', 'c']
+    //数组的增删改查
+    //push是在数组的末尾添加元素
+    array.push('d')
+    //unshift 是在数组的开头添加元素
+    array.unshift('e')
+    //pop 是删除数组的末尾元素
+    array.pop()
+    //shift 是删除数组的开头元素
+    array.shift()
+    //splice 是在数组的中间添加元素
+    array.splice(1, 0, 'f')
+    //数组的遍历
+
+    for (let i = 0; i < array.length; i++) {
+      console.log(array[i])
+    }
+
+    //声明一个数组星期一到星期日
+    let week = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日']
+    console.log(week[6])
+    console.log(week.length)
+
+
+  </script>
+
+</body>
+
+</html>

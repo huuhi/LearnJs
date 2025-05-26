@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        img{
+        img {
             width: 100px;
             height: 100px;
         }
     </style>
 </head>
+
 <body>
     <img src="../孙.jpg" alt="" id="img">
     <br>
@@ -31,46 +33,47 @@
     <input type="submit" value="提交" onclick="submit()">
 </body>
 <script>
-    function show(){
-        document.getElementById("img").src="../孙.jpg";
+    function show() {
+        document.getElementById("img").src = "../孙.jpg";
     }
 
-    function disshow(){
-        document.getElementById("img").src="#";
+    function disshow() {
+        document.getElementById("img").src = "#";
     }
 
-    function all(){
-        var d=document.getElementsByName("hobby")
-        for(var i=0;i<d.length;i++){
-            d[i].checked=true;
-        }       
+    function all() {
+        var d = document.getElementsByName("hobby")
+        for (var i = 0; i < d.length; i++) {
+            d[i].checked = true;
+        }
     }
     function none() {
-        var d=document.getElementsByName("hobby");
+        var d = document.getElementsByName("hobby");
         console.log("启动none")
-        for(var i=0;i<d.length;i++){
-            d[i].checked=false;
-        }    
+        for (var i = 0; i < d.length; i++) {
+            d[i].checked = false;
+        }
     }
-    function submit(){
+    function submit() {
         alert("提交成功");
         none();
     }
 
-    function lower(){
-        var input =document.getElementById("zi");
-        input.value=input.value.toLowerCase();
+    function lower() {
+        var input = document.getElementById("zi");
+        input.value = input.value.toLowerCase();
 
 
     }
 
-    function upper(){
-        var input =document.getElementById("zi");
-        input.value=input.value.toUpperCase();
+    function upper() {
+        var input = document.getElementById("zi");
+        input.value = input.value.toUpperCase();
 
 
     }
 
 
 </script>
+
 </html>
