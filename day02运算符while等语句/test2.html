@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //余额，初始化为0
+    let money = 0;
+    let flag = true;
+    while (flag) {
+
+
+      const c = + prompt('请操作：1.存钱 2.取钱 3.查看余额 4.退出');
+      switch (c) {
+        case 1:
+          let money1 = + prompt('请输入存入金额');
+          money += money1;
+          break
+        case 2:
+          let money2 = + prompt('请输入取出金额');
+          if (money < money2) {
+            alert('余额不足')
+          } else {
+            money -= money2;
+          }
+          break
+        case 3:
+          alert('当前余额为：' + money);
+          break
+        case 4:
+          alert('退出成功');
+          flag = false;
+          break
+      }
+    }
+  </script>
+</body>
+
+</html>
