@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+</head>
+
+<body>
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+    let arr = []
+    for (let i = 0; i < 4; i++) {
+      let num = +prompt('请输入第' + (i + 1) + '季度的销量')
+      if (typeof num == 'number') {
+        arr.push(num)
+      } else {
+        alert('输入有误，请重新输入')
+        i--;
+      }
+    }
+
+
+    // 指定图表的配置项和数据
+    var option = {
+      title: {
+        text: 'ECharts 入门示例'
+      },
+      tooltip: {},
+      legend: {
+        data: ['销量']
+      },
+      xAxis: {
+        data: ['第一季度', '第二季度', '第三季度', '第四季度']
+      },
+      yAxis: {},
+      series: [
+        {
+          name: '销量',
+          type: 'bar',
+          data: arr
+        }
+      ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  </script>
+</body>
+
+</html>

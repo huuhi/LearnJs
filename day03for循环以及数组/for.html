@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  span {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid pink;
+
+    color: hotpink;
+  }
+</style>
+
+<body>
+  <script>
+    // let sum = 0
+    // for (let i = 1; i <= 100; i++) {
+    //   if (i % 2 === 0) {
+    //     sum += i
+    //   }
+    // }
+    // document.writeln(sum)
+    // for (let i = 0; i < 5; i++) {
+    //   document.writeln('❤')
+    // }
+    //遍历数组
+    // let arr = [
+    //   '张三',
+    //   '李四',
+    //   '王五',
+    //   '赵六',
+    //   '钱七'
+    // ]
+    // for (let i = 0; i < arr.length; i++) {
+    //   document.writeln(arr[i] + '<br>')
+    // }
+    // 嵌套循环
+    // for (let i = 0; i < 3; i++) {
+    //   document.writeln('第' + (i + 1) + '天：<br>')
+    //   for (let j = 0; j < 5; j++) {
+    //     document.write(`背了${j + 1}个单词<br>`)
+    //   }
+    // }
+
+    // for (let i = 0; i < 5; i++) {
+    //   for (let j = 0; j < 5; j++) {
+    //     document.write('★')
+    //   }
+
+    //   document.write('<br>')
+
+    // }  
+    // 打印九九乘法表
+    for (let i = 1; i <= 9; i++) {
+      for (let j = 1; j <= i; j++) {
+        document.write(`<span>${j}*${i}=${i * j} </span> `);
+      }
+      document.write('<br>');
+
+    }   
+  </script>
+
+</body>
+
+</html>

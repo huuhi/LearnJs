@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let arr = [];
+    while (arr.length < 5) {
+      let year = +prompt("请输入年龄(1-100)");
+      if (typeof year !== "number" || year < 1 || year > 100) {
+        alert("输入有误，请重新输入");
+      } else {
+        arr.push(year);
+      }
+    }
+    let sum = 0;
+    let max = 0;
+    let min = 100;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > 18) {
+        document.write("<br>成年：" + arr[i])
+      }
+      if (arr[i] > max) {
+        max = arr[i];
+      }
+      if (arr[i] < min) {
+        min = arr[i];
+      }
+      sum += arr[i];
+    }
+    document.writeln("<br>最大值：" + max);
+    document.writeln("<br>最小值：" + min);
+    document.writeln("<br>平均值：" + sum / arr.length);
+
+  </script>
+</body>
+
+</html>
