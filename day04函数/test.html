@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let seconds = prompt("请输入秒数");
+
+    secondsToTime(seconds);
+    function secondsToTime(seconds) {
+      let hours = Math.floor(seconds / 3600);
+      let minutes = Math.floor((seconds % 3600) / 60);
+      let second = seconds % 60;
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      second = second < 10 ? '0' + second : second;
+
+      document.writeln(`${seconds}转换结果为：${hours}小时 ${minutes}分钟 ${second}秒`);
+    }
+
+  </script>
+</body>
+
+</html>
