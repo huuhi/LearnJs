@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    Math.ceil(4.1); // 5
+    Math.floor(4.9); // 4
+    // 四舍五入
+    Math.round(4.5); // 5
+
+    Math.random(); // 0-1之间的 随机数
+    function getRandom() {
+      for (let i = 0; i < 10; i++) {
+        console.log(Math.floor(Math.random() * 9 + 1));// 1-10之间的随机数
+      }
+    }
+    getRandom();
+
+    Math.floor(Math.random() * (5 + 1) + 5)// 5-10之间的随机数
+
+    function getRandom2(start, end) {
+      return Math.floor(Math.random() * (end - start + 1) + start)
+    }
+    document.writeln(getRandom2(1, 10));
+
+
+
+    // test
+    document.writeln('<br>')
+    let arr = ['赵云', '张飞', '关羽', '刘备', '诸葛亮', '黄忠', '马超', '孙尚香', '曹操', '司马懿'];
+    let index = getRandom2(0, arr.length - 1);
+    document.writeln(arr[index]);
+
+
+    let num = getRandom2(1, 10);
+    while (true) {
+      let guess = + prompt('请输入一个1-10之间的数字');
+      if (guess === num) {
+        alert('恭喜你猜对了');
+        break;
+      } else if (guess > num) {
+        alert('你猜的数字大了');
+      } else {
+        alert('你猜的数字小了');
+      }
+    }
+  </script>
+</body>
+
+</html>
