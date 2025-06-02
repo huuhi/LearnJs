@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+<body>
+  <div>
+    <h4>抽奖</h4>
+  </div>
+  <script>
+    const arr = ['喜喜', '赵敏', '周芷若', '张无忌', '张三丰'];
+    function random(start, end) {
+      return Math.floor(Math.random() * (end - start + 1) + start);
+    }
+
+    function randomArr(arr) {
+      const div = document.querySelector('div')
+      // 清空div内容，避免重复追加
+      div.innerHTML = '<h4>抽奖</h4>';
+      for (let i = 1; i <= 3; i++) {
+        const result = arr[random(0, arr.length - 1)]
+        // 追加新的h标签内容，而不是覆盖
+        div.innerHTML += `<h${i}>${result}</h${i}>`
+      }
+    }
+    randomArr(arr)
+  </script>
+</body>
+
+</html>

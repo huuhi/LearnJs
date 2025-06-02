@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button disabled></button>
+  <script>
+    function test() {
+      console.log('hello');
+    }
+    // 调用函数不用写括号
+    // let timer = setInterval(test, 1000);
+    // 关闭定时器
+    // clearInterval(timer);
+
+    // timer = setInterval(test, 1000)
+    let count = 10;
+    const btn = document.querySelector('button');
+
+    let timer = setInterval(function () {
+      count--;
+      btn.innerHTML = `我已阅读用户协议(${count})`
+      console.log(count);
+      if (count <= 0) {
+        clearInterval(timer);
+        document.querySelector('button').disabled = false;
+        btn.innerHTML = '同意用户协议';
+        return;
+      }
+    }, 1000)
+  </script>
+
+</body>
+
+</html>

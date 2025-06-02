@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="num">123</div>
+  <div>123</div>
+  <p id="nav">导航栏</p>
+  <ul>
+    <li>123</li>
+    <li>123</li>
+    <li></li>
+  </ul>
+  <script>
+    // 通过css选择器获取元素
+    const div = document.querySelector('.num');
+    div.innerHTML = '456';
+    div.style.color = 'red';
+    const nav = document.querySelector('#nav')
+    nav.innerHTML = '导航栏2'
+
+    const li = document.querySelector('ul li:first-child')
+    li.innerHTML = '456'
+
+    document.querySelectorAll('ul li').forEach(item => {
+      console.log(item)
+    })
+
+
+    console.log(div.innerHTML)
+    // innerText不会解析标签
+    div.innerText = '<strong>456</strong>'
+    // innerHTML会解析标签
+    div.innerHTML = '<strong>456</strong>'
+  </script>
+</body>
+
+</html>

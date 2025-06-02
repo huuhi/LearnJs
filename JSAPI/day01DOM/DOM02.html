@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* img {
+      width: 200px;
+      height: 200px;
+    } */
+  </style>
+</head>
+
+<body>
+  <!-- <img src="../image/1.jpg" alt=""> -->
+  <script>
+    const img = document.querySelector('img');
+    const arr = ['../image/2.png', '../image/3.png', '../image/1.jpg']
+    const random = Math.floor(Math.random() * arr.length)
+    const body = document.querySelector('body')
+    body.style.background = `url(${arr[random]})`
+  </script>
+</body>
+
+</html>
