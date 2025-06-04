@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="input" placeholder="请输入内容">
+  <p id="f"></p>
+  <p id="b"></p>
+  <script>
+    document.querySelector('#input').addEventListener('focus', function () {
+      console.log('获得焦点');
+      document.querySelector('#f').textContent = '获得焦点';
+    })
+    document.querySelector('#input').addEventListener('blur', function () {
+      console.log('失去焦点');
+      document.querySelector('#b').textContent = '失去焦点';
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: blue;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <p id="text">十年生死两茫茫，不思量，自难忘</p>
+  <button>按钮</button>
+  <script>
+    const btn = document.querySelector('button')
+    // addEventListener() 方法用于向指定元素添加事件句柄。
+    btn.addEventListener('dblclick', function () {
+      const text = document.querySelector('#text')
+      text.style.color = 'red'
+      alert('不要点我！')
+    });
+    const box = document.querySelector('.box')
+    box.addEventListener('mouseenter', function () {
+      this.innerHTML = '鼠标进入了'
+      this.style.cursor = 'move'
+    })
+    box.addEventListener('mouseleave', function () {
+      this.innerHTML = '鼠标离开了'
+      this.style.cursor = 'default'
+    })
+
+
+  </script>
+</body>
+
+</html>

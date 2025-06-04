@@ -102,11 +102,11 @@
         <li class="active"></li>
         <li></li>
         <li></li>
+        <!-- <li></li> -->
+        <!-- <li></li>
         <li></li>
         <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
+        <li></li> -->
       </ul>
       <div class="toggle">
         <button class="prev">&lt;</button>
@@ -115,45 +115,59 @@
     </div>
   </div>
   <script>
-    // 1. 初始数据
     const sliderData = [
       { url: '../images/1.jpg', title: '对人类来说会不会太超前了？', color: 'rgb(100, 67, 68)' },
       { url: '../images/2.png', title: '开启剑与雪的黑暗传说！', color: 'rgb(43, 35, 26)' },
       { url: '../images/3.png', title: '真正的jo厨出现了！', color: 'rgb(36, 31, 33)' },
-      // { url: './images/slider04.jpg', title: '李玉刚：让世界通过B站看到东方大国文化', color: 'rgb(139, 98, 66)' },
-      // { url: './images/slider05.jpg', title: '快来分享你的寒假日常吧~', color: 'rgb(67, 90, 92)' },
-      // { url: './images/slider06.jpg', title: '哔哩哔哩小年YEAH', color: 'rgb(166, 131, 143)' },
-      // { url: './images/slider07.jpg', title: '一站式解决你的电脑配置问题！！！', color: 'rgb(53, 29, 25)' },
-      // { url: './images/slider08.jpg', title: '谁不想和小猫咪贴贴呢！', color: 'rgb(99, 72, 114)' },
-    ]
-    function random(start, end) {
-      return Math.floor(Math.random() * (end - start + 1)) + start;
-    }
+    ];
+
     const p = document.querySelector('.slider-footer p');
     const lis = document.querySelectorAll('.slider-indicator li');
-    const toggle = document.querySelector('.slider-footer')
-    // 清除所有li的active类名
-
+    const toggle = document.querySelector('.slider-footer');
     const img = document.querySelector('.slider-wrapper img');
     let count = 0;
-    function change() {
+
+    // 统一更新轮播图的函数（不修改 count）
+    function updateSlider() {
       lis.forEach(li => li.classList.remove('active'));
-      // const randomIndex = random(0, sliderData.length - 1);
-      lis[count].classList.toggle('active')
+      lis[count].classList.add('active');
+
       const slider = sliderData[count];
       img.src = slider.url;
-      p.innerHTML = slider.title;
+      p.textContent = slider.title;
       toggle.style.backgroundColor = slider.color;
-      count++;
-      if (count >= sliderData.length) {
-        count = 0;
-      }
-
     }
-    setInterval(change, 2000);
 
+    // 自动轮播切换（自增 count）
+    function autoChange() {
+      count = (count + 1) % sliderData.length; // 循环递增
+      updateSlider();
+    }
 
+    // 初始化定时器
+    let timer = setInterval(autoChange, 3000);
 
+    // 鼠标悬停暂停/恢复
+    document.querySelector('.slider-wrapper').addEventListener('mouseenter', () => {
+      clearInterval(timer);
+    });
+    document.querySelector('.slider-wrapper').addEventListener('mouseleave', () => {
+      timer = setInterval(autoChange, 3000);
+    });
+
+    // 按钮点击事件
+    document.querySelector('.prev').addEventListener('click', () => {
+      count = (count - 1 + sliderData.length) % sliderData.length; // 循环递减
+      updateSlider();
+    });
+
+    document.querySelector('.next').addEventListener('click', () => {
+      count = (count + 1) % sliderData.length; // 循环递增
+      updateSlider();
+    });
+
+    // 初始加载
+    updateSlider();
   </script>
 </body>
 

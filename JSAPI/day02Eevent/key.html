@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>键盘事件</h1>
+  <input type="text" id="input" placeholder="请输入内容">
+  <button id="btn">点击</button>
+  <p id="up"></p>
+  <p id="result"></p>
+  <p id="press"></p>
+  <script>
+    // 键盘监听事件
+    // keydown
+    document.querySelector('#input').addEventListener('keydown', function (event) {
+      console.log('按下键:', event.key);
+      document.querySelector('#result').textContent = `按下键: ${event.key}`;
+    });
+    // keyup
+    document.querySelector('#input').addEventListener('keydown', function (event) {
+      console.log('松开的键:', event.key);
+      document.querySelector('#up ').textContent = `松开的键: ${event.key}`;
+    });
+
+    // keypress 这个事件只能在输入字符时触发
+    document.querySelector('#input').addEventListener('keypress', function (event) {
+      console.log('按下的字符:', event.key);
+      document.querySelector('#press').textContent = `按下的字符: ${event.key}`;
+    });
+
+
+  </script>
+</body>
+
+</html>

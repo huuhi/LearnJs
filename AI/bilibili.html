@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B站弹幕模拟器</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Microsoft YaHei', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(to right, #FB7299, #FFB6C1);
+      color: white;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      font-size: 28px;
+    }
+
+    .video-container {
+      position: relative;
+      background: #000;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .video-placeholder {
+      width: 100%;
+      height: 100%;
+      background: url('https://pic.rmb.bdstatic.com/bjh/down/4b3c2d1e4d9a9c3a2d0f3b7f4e9d0c0f.jpeg') no-repeat center center;
+      background-size: cover;
+      opacity: 0.9;
+    }
+
+    .danmaku-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .danmaku {
+      position: absolute;
+      white-space: nowrap;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .control-panel {
+      background: #f1f2f3;
+      padding: 20px;
+      border-top: 1px solid #e7e7e7;
+    }
+
+    .input-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      flex: 1;
+      min-width: 250px;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .input-field:focus {
+      border-color: #FB7299;
+    }
+
+    .color-picker {
+      width: 50px;
+      height: 40px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .size-select {
+      padding: 0 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .btn {
+      background: #FB7299;
+      color: white;
+      border: none;
+      padding: 0 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      background: #e65a82;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(251, 114, 153, 0.4);
+    }
+
+    .btn i {
+      margin-right: 8px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .action-btn {
+      padding: 10px 20px;
+      background: #f1f2f3;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+    }
+
+    .action-btn i {
+      margin-right: 5px;
+    }
+
+    .action-btn:hover {
+      background: #e0e0e0;
+      border-color: #d0d0d0;
+    }
+
+    .info-text {
+      text-align: center;
+      color: #888;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .input-group {
+        flex-direction: column;
+      }
+
+      .video-container {
+        height: 400px;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <i class="fab fa-bilibili"></i>
+        <span>弹幕模拟器</span>
+      </div>
+    </header>
+
+    <div class="video-container">
+      <div class="video-placeholder"></div>
+      <div class="danmaku-container" id="danmakuContainer"></div>
+    </div>
+
+    <div class="control-panel">
+      <div class="input-group">
+        <input type="text" class="input-field" id="danmakuInput" placeholder="发个友善的弹幕吧..." maxlength="30">
+        <select class="size-select" id="sizeSelect">
+          <option value="16">小</option>
+          <option value="20" selected>中</option>
+          <option value="24">大</option>
+          <option value="28">超大</option>
+        </select>
+        <input type="color" class="color-picker" id="colorPicker" value="#FFFFFF">
+        <button class="btn" id="sendBtn">
+          <i class="fas fa-paper-plane"></i>
+          <span>发射弹幕</span>
+        </button>
+      </div>
+
+      <div class="actions">
+        <button class="action-btn" id="clearBtn">
+          <i class="fas fa-trash-alt"></i>
+          <span>清空弹幕</span>
+        </button>
+        <button class="action-btn" id="randomBtn">
+          <i class="fas fa-random"></i>
+          <span>随机弹幕</span>
+        </button>
+        <button class="action-btn" id="topBtn">
+          <i class="fas fa-arrow-up"></i>
+          <span>顶部弹幕</span>
+        </button>
+        <button class="action-btn" id="bottomBtn">
+          <i class="fas fa-arrow-down"></i>
+          <span>底部弹幕</span>
+        </button>
+      </div>
+
+      <div class="info-text">
+        提示：弹幕会从右向左滚动，可调整大小和颜色
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 弹幕数据
+    const danmakuData = [
+      "前方高能！！！",
+      "爷青回！",
+      "全体起立！",
+      "恭喜你发现宝藏",
+      "打卡成功",
+      "第一！",
+      "哈哈哈笑死我了",
+      "这个UP主太有才了",
+      "泪目",
+      "我直接三连",
+      "太强了！",
+      "666666",
+      "再来亿遍",
+      "真香警告",
+      "名场面打卡",
+      "硬币奉上",
+      "已三连",
+      "火钳刘明",
+      "建议收藏",
+      "这波操作满分"
+    ];
+
+    // 颜色数组
+    const colors = [
+      "#FFFFFF", "#FF6699", "#66CCFF", "#99FF66",
+      "#FFCC66", "#FF6666", "#66FFCC", "#CC66FF"
+    ];
+
+    // DOM元素
+    const danmakuContainer = document.getElementById('danmakuContainer');
+    const danmakuInput = document.getElementById('danmakuInput');
+    const sizeSelect = document.getElementById('sizeSelect');
+    const colorPicker = document.getElementById('colorPicker');
+    const sendBtn = document.getElementById('sendBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const randomBtn = document.getElementById('randomBtn');
+    const topBtn = document.getElementById('topBtn');
+    const bottomBtn = document.getElementById('bottomBtn');
+
+    // 弹幕轨道
+    const tracks = Array(8).fill(0).map((_, i) => i * 40 + 20);
+
+    // 发送弹幕
+    function sendDanmaku(text, size, color, position = 'random') {
+      if (!text.trim()) return;
+
+      const danmaku = document.createElement('div');
+      danmaku.className = 'danmaku';
+      danmaku.textContent = text;
+      danmaku.style.fontSize = `${size}px`;
+      danmaku.style.color = color;
+
+      // 随机选择轨道
+      let track;
+      if (position === 'top') {
+        track = 20;
+      } else if (position === 'bottom') {
+        track = tracks[tracks.length - 1];
+      } else {
+        track = tracks[Math.floor(Math.random() * tracks.length)];
+      }
+
+      danmaku.style.top = `${track}px`;
+      danmaku.style.left = '100%';
+
+      danmakuContainer.appendChild(danmaku);
+
+      // 弹幕动画
+      let start;
+      const duration = 15000;
+
+      function animate(timestamp) {
+        if (!start) start = timestamp;
+        const progress = timestamp - start;
+        const containerWidth = danmakuContainer.offsetWidth;
+        const danmakuWidth = danmaku.offsetWidth;
+
+        // 弹幕移动
+        const translateX = containerWidth - (progress / duration) * (containerWidth + danmakuWidth);
+        danmaku.style.transform = `translateX(${translateX}px)`;
+
+        // 移除屏幕外的弹幕
+        if (translateX < -danmakuWidth) {
+          danmaku.remove();
+          return;
+        }
+
+        // 继续动画
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // 事件监听
+    sendBtn.addEventListener('click', () => {
+      const text = danmakuInput.value;
+      const size = sizeSelect.value;
+      const color = colorPicker.value;
+
+      sendDanmaku(text, size, color);
+      danmakuInput.value = '';
+      danmakuInput.focus();
+    });
+
+    danmakuInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        sendBtn.click();
+      }
+    });
+
+    clearBtn.addEventListener('click', () => {
+      danmakuContainer.innerHTML = '';
+    });
+
+    randomBtn.addEventListener('click', () => {
+      const text = danmakuData[Math.floor(Math.random() * danmakuData.length)];
+      const size = Math.floor(Math.random() * 4) * 4 + 16;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      sendDanmaku(text, size, color);
+    });
+
+    topBtn.addEventListener('click', () => {
+      if (!danmakuInput.value.trim()) return;
+      sendDanmaku(danmakuInput.value, sizeSelect.value, colorPicker.value, 'top');
+      danmakuInput.value = '';
+    });
+
+    bottomBtn.addEventListener('click', () => {
+      if (!danmakuInput.value.trim()) return;
+      sendDanmaku(danmakuInput.value, sizeSelect.value, colorPicker.value, 'bottom');
+      danmakuInput.value = '';
+    });
+
+    // 初始化随机弹幕
+    function initRandomDanmakus() {
+      for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+          const text = danmakuData[Math.floor(Math.random() * danmakuData.length)];
+          const size = Math.floor(Math.random() * 4) * 4 + 16;
+          const color = colors[Math.floor(Math.random() * colors.length)];
+          sendDanmaku(text, size, color);
+        }, i * 800);
+      }
+    }
+
+    // 页面加载完成后初始化
+    window.addEventListener('load', initRandomDanmakus);
+  </script>
+</body>
+
+</html>

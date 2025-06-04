@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #ccc;
+      position: relative;
+    }
+
+    h3 {
+      text-align: center;
+    }
+
+    #bt1 {
+      width: 100px;
+      height: 30px;
+      background-color: #f00;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #bt2 {
+      width: 100px;
+      height: 30px;
+      background-color: #0f0;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <h3>随机</h3>
+    <p>问题是：</p>
+    <span></span><br>
+    <button id="bt1">开始</button>
+
+    <button id="bt2">结束</button>
+  </div>
+  <script>
+    const arr = ['你是猪吗？', '你是狗吗？', '你是人吗？', '你是猫吗？', '你是牛吗？'];
+    let randomIndex = 0;
+    function randomQ() {
+      randomIndex = Math.floor(Math.random() * arr.length);
+      document.querySelector('span').textContent = arr[randomIndex];
+    }
+    let timer;
+    document.querySelector('#bt1').addEventListener('click', function () {
+      if (arr.length === 1) {
+        document.querySelector('span').textContent = arr[0];
+        document.querySelector('#bt1').disabled = true;
+        document.querySelector('#bt2').disabled = true;
+
+      }
+      timer = setInterval(randomQ, 100);
+    })
+
+    document.querySelector('#bt2').addEventListener('click', function () {
+      //删除数组中的元素
+      arr.splice(randomIndex, 1);
+      clearInterval(timer);
+    })
+
+  </script>
+</body>
+
+</html>

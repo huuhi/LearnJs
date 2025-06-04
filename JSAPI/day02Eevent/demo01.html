@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: #ccc;
+      position: relative;
+    }
+
+    .x {
+      background-color: red;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: all 0.5s;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="x">X</div>
+  </div>
+  <script>
+    // function say() {
+    //   console.log(this)
+    // }
+
+    // let user = {
+    //   name: '张三',
+    //   say: say
+    // }
+
+    // say() // window
+    // user.say()
+    document.querySelector('.x').addEventListener('click', function (e) {
+      document.querySelector('.box').style.display = 'none';
+
+    });
+  </script>
+</body>
+
+</html>
