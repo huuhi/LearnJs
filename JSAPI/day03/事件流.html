@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .father {
+    width: 200px;
+    height: 200px;
+    background-color: pink;
+  }
+
+  .son {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+</style>
+
+<body>
+  <div class="father">
+    <div class="son"></div>
+  </div>
+  <button>按钮</button>
+  <script>
+    const father = document.querySelector('.father');
+    const son = document.querySelector('.son');
+
+    // document.addEventListener('click', function (e) {
+    //   alert('我是document的click事件');
+    // });
+    // father.addEventListener('click', function (e) {
+    //   alert('我是father的click事件');
+    // });
+    // son.addEventListener('click', function (e) {
+    //   // 阻止冒泡
+    //   alert('我是son的click事件');
+    //   e.stopPropagation()
+    // });
+    const btn = document.querySelector('button')
+    // btn.onclick = function (e) {
+    //   alert('我是按钮的click事件');
+    //   e.stopPropagation() // 阻止冒泡
+    // }
+    // 取消按钮的事件
+    // btn.onclick = null;
+    btn.addEventListener('click', fn);
+
+    function fn(e) {
+      alert('我是按钮的click事件');
+      e.stopPropagation(); // 阻止冒泡
+    }
+    // 匿名函数无法取消事件
+    btn.removeEventListener('click', fn)
+  </script>
+</body>
+
+</html>
