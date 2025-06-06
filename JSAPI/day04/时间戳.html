@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>倒计时</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    #timer {
+      font-size: 24px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="timer"></div>
+  <script>
+    function getTimePoor(futureDateString) {
+      const futureDate = new Date(futureDateString);
+      const now = new Date();
+      const poor = futureDate - now;
+
+      // 如果已经是过去时间
+      if (poor <= 0) {
+        return "目标时间已到达或已过去";
+      }
+
+      // 计算各个时间单位
+      const day = Math.floor(poor / (24 * 60 * 60 * 1000));
+      const hour = Math.floor((poor % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+      const minute = Math.floor((poor % (60 * 60 * 1000)) / (60 * 1000));
+      const second = Math.floor((poor % (60 * 1000)) / 1000);
+
+      // 格式化显示
+      const format = (num) => num < 10 ? '0' + num : num;
+
+      return `${day}天${format(hour)}小时${format(minute)}分钟${format(second)}秒`;
+    }
+
+    function updateCountdown() {
+      const futureDateString = '2025-07-04';
+      const timerElement = document.getElementById('timer');
+      const poor = getTimePoor(futureDateString);
+
+      if (poor === "目标时间已到达或已过去") {
+        timerElement.innerHTML = `目标时间 ${futureDateString} 已到达！`;
+        clearInterval(countdownInterval);
+      } else {
+        timerElement.innerHTML = `距离${futureDateString}还有 ${poor}`;
+      }
+    }
+
+    // 初始更新
+    updateCountdown();
+
+    // 每秒更新一次
+    const countdownInterval = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+
+</html>
