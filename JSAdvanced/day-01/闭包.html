@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 闭包：函数和声明该函数的词法环境的组合
+    // function outer(){
+    //   let a=10
+    //   function inner(){
+    //     console.log(a)
+    //   }
+    //   inner()
+    // }
+    // outer()
+    // function outer() {
+    //   let a = 10
+    //   function inner() {
+    //     console.log(a)
+    //   }
+    //   return inner
+    // }
+    // const inner = outer()
+    // inner() // 10
+
+    // 计算函数被调用的次数,全局变量不安全
+    function fn() {
+      let count = 0
+      function inner() {
+        count++
+        console.log(`函数被调用了${count}次`)
+      }
+      return inner
+    }
+
+    const inner = fn()
+
+
+
+
+  </script>
+</body>
+
+</html>

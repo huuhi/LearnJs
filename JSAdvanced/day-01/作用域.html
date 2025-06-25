@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let a = 10
+    function gn() {
+      // 作用域链：查找变量的规则
+      // 1. 首先在当前作用域查找
+      // 2. 如果没有找到，就往上一级作用域查找
+      // 3. 如果还没有找到，就继续往上一级作用域查找，直到全局作用域
+      let a = 11
+      console.log(a)
+    }
+
+    gn()
+  </script>
+</body>
+
+</html>

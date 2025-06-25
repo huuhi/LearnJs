@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    // 
+    // localStorage.setItem('uname', '你好！')
+    const uname = localStorage.getItem('uname')
+    console.log(uname) // 你好！
+    // sessionStorage.setItem('hi', 'Hello')
+    const uname2 = sessionStorage.getItem('hi')
+    console.log(uname2) // 你好！
+
+    // 如果要存储对象，就需要将其转换为JSON字符串，因为localStorage和sessionStorage只能存储字符串
+    const user = {
+      name: '张三',
+      age: 18
+    }
+
+    localStorage.setItem('user', JSON.stringify(user))
+    const userStr = localStorage.getItem('user')
+    console.log(JSON.parse(userStr).name)
+  </script>
+</body>
+
+</html>

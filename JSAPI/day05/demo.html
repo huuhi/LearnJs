@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <a href="https://www.bilibili.com/"></a>
+  </div>
+  <script>
+    const a = document.querySelector('div a')
+    let num = 5;
+    let timer = setInterval(ab, 1000)
+    function ab() {
+      if (num === 0) {
+        clearInterval(timer)
+        location.href = 'https://www.bilibili.com/'
+      }
+      a.innerHTML = `还剩下${num--}秒跳转`
+
+    }
+  </script>
+</body>
+
+</html>
