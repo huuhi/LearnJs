@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const [hr, xm, hw] = ['haier', 'xiaomi', 'huawei'];
+    console.log(hr)
+    console.log(xm)
+    console.log(hw)
+
+    function test() {
+      return [1, 2, 3, 4, 5]
+    }
+    const arr2 = test()
+    console.log(`最大值：${Math.max(...arr2)}`)
+    console.log(`最小值：${Math.min(...arr2)}`)
+
+    const [a, b] = [1, [2, 3]]
+    console.log(a) // 1
+    console.log(b) // [2,3]
+    console.log(b[0])
+  </script>
+</body>
+
+</html>

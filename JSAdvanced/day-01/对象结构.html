@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // const obj = {
+    //   name: "喜喜",
+    //   age: 18,
+    //   sex: "女"
+    // }
+    // const { name, sex, age } = obj;
+    // // 对象结构的变量名可以改名
+    // const { uname: username, uage } = { uname: "喜喜", uage: 18 }
+    // // 属性名和变量名保持一致
+    // console.log(username)
+
+    // console.log(name)
+
+    // 数组对象结构
+    const arr = [
+      {
+        name: "喜喜",
+        age: 18
+      },
+      {
+        name: "小明",
+        age: 19
+      },
+      {
+        name: "小红",
+        age: 20
+      },
+      {
+        name: "小刚",
+        age: 21
+      }
+    ]
+    console.log(...arr)
+
+    const pig = [
+      {
+        name: "猪猪侠",
+        age: 20,
+        family: {
+          father: "猪爸爸",
+          mother: "猪妈妈"
+        }
+      }
+    ]
+    const [{ name, age, family: { father, mother } }] = pig;
+    console.log(father, mother)
+
+
+
+
+
+
+
+
+    // const [{ name, age }] = pig;
+    console.log(name, age)
+  </script>
+</body>
+
+</html>

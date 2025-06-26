@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function sum(...arr) {
+      let sum = 0;
+      // 剩余参数和arguments的区别：
+      // 1. 剩余参数是一个真正的数组，可以使用数组的方法
+      // 2. arguments是一个类数组对象，不能直接使用数组的方法
+      // 3. 剩余参数在函数定义时就已经确定了，而arguments是在函数调用时才确定的
+      // 4. 剩余参数可以有默认值，而arguments没有默认值
+      // 5. 剩余参数可以有多个，而arguments只能有一个
+      // 6. 剩余参数可以使用解构赋值，而arguments不能使用解构赋值
+
+      // 展开运算符 ...
+      for (let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      console.log(sum);
+    }
+
+    sum(1, 23, 4, 45, 5, 6)
+  </script>
+</body>
+
+</html>
