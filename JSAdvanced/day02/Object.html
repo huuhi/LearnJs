@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const user = {
+      name: '张三',
+      age: 18,
+    }
+    // keys获取对象的属性
+    const arr = Object.keys(user)
+    console.log(arr)
+    // values获取对象的值
+    const values = Object.values(user)
+    console.log(values)
+
+    const obj = {}
+    // Object.assign()将user对象中的属性复制到obj对象中
+    Object.assign(obj, user)
+
+    Object.assign(user, { sex: '男' })
+    console.log(obj)
+    console.log(user)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .tag {
+      color: gray;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <p class="name"></p>
+  <script>
+    const gift = '一台mac book pro,100g巧克力'
+    const arr = gift.split(',')
+    const parentP = document.querySelector('.name')
+    arr.forEach(item => {
+      const p = document.createElement('p')
+      p.classList.add('tag')
+      p.innerHTML = `【赠品】${item}`
+      parentP.appendChild(p)
+    })
+  </script>
+</body>
+
+</html>

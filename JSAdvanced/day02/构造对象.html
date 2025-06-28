@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const user = {
+      name: '张三',
+      age: 18,
+    }
+    const obj = new Object({ name: "李四", age: 20 });
+
+    // 构造对象 以大写字母开头
+    function User(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    const hu = new User('胡歌', 30);
+    console.log(hu)
+    function Goods(name, price, count) {
+      this.uname = name;
+      this.price = price;
+      this.count = count;
+
+      this.print = function () {
+        console.log(`商品名称：${this.uname}, 价格：${this.price}, 数量：${this.count}`);
+      }
+    }
+    const xiaomi = new Goods('小米手机', 1999, 100);
+    xiaomi.print()
+    xiaomi.sayHi = () => {// 添加方法
+      console.log('你好，小米手机！');
+    }
+    xiaomi.sayHi();
+    const huawei = new Goods('华为手机', 2999, 200);
+    huawei.print()
+    // huawei.sayHi()
+    console.log(xiaomi == huawei)//false
+    const vivo = new Goods('vivo手机', 3999, 300);
+    vivo.print()
+  </script>
+</body>
+
+</html>

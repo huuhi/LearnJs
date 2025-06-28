@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div></div>
+  <script>
+    const spec = {
+      size: '40*40',
+      color: 'red',
+    }
+
+    const values = Object.values(spec)
+    const str = values.join('/')
+    const div = document.querySelector('div')
+    div.innerHTML = str
+    div.style.color = 'gray'
+    div.style.fontSize = '12px'
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function Person() {
+
+    }
+    // 静态成员和静态方法
+    Person.type = '人'
+    Person.sayHi = function () {
+      console.log('你好，人类！');
+    }
+    console.log(Person.type); // 人
+  </script>
+</body>
+
+</html>
