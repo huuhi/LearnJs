@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 1.面向过程
+    // 分析出解决问题需要的步骤，然后一步步实现这些步骤。
+    // 例如：计算1-100的和
+    // 2.面向对象
+    // 将问题抽象为对象，定义对象的属性和方法，通过对象来解决问题。
+    // 例如：定义一个Person类，包含name和age属性，以及sayHello方法
+
+    // 原型对象
+    function Star(name, age) {
+      this.name = name;
+      this.age = age;
+      // this.sing = function () {
+      //   console.log(this.name + '会唱歌');
+      // }
+    }
+
+    // 原型prototype,共享属性和方法
+    Star.prototype.sing = function () {
+      console.log(this.name + '会唱歌');
+    }
+
+    const ldh = new Star('刘德华', 18);
+    const zxy = new Star('张学友', 20);
+    console.log(ldh.sing())
+    console.log(zxy.sing())
+    console.log(ldh.sing === zxy.sing) // true
+  </script>
+</body>
+
+</html>

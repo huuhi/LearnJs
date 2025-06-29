@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    const p = {
+      eye: 2,
+      hand: 2
+    }
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    Person.prototype.sayHi = function () {
+      console.log(`${this.name}对你说：你好`)
+    }
+    function Student(name, age, school) {
+      Person.call(this, name, age)
+      this.school = school;
+    }
+    Student.prototype = new Person()
+    Student.prototype.constructor = Student;
+    const xm = new Student('小明', 18, '清华大学')
+    console.log(xm.school)
+    xm.sayHi()
+
+    // 通过原型继承
+    function Woman() {
+
+    }
+    Woman.prototype = p
+    Woman.prototype.constructor = Woman
+    Woman.prototype.say = function () {
+      console.log('我是一个女人')
+    }
+    const w = new Woman()
+    console.log(w)
+    w.say()
+  </script>
+</body>
+
+</html>

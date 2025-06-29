@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // constructor的作用是指向构造函数的原型对象
+    function Star(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+    // 这样子直接赋值了，constructor的原型对象就会被覆盖
+    Star.prototype = {
+      constructor: Star,
+      sing: function () {
+        console.log(this.name + '会唱歌');
+      },
+      dance: function () {
+        console.log(this.name + '会跳舞');
+      }
+    }
+    const ldh = new Star('刘德华', 18);
+    // console.log(Star.prototype); // [Function: Star]
+    console.log(ldh.__proto__ === Star.prototype); // [Function: Star]
+
+  </script>
+</body>
+
+</html>
