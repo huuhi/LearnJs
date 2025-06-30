@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function f() {
+
+      try {
+        document.querySelector('.non-existent-class').innerText = 'Hello, World!';
+      } catch (error) {
+        console.log(error);
+        return;
+      } finally {
+        console.log('不管有没有错误，都会执行这里的代码');
+      }
+      console.log('如果没有错误，这行代码会执行');
+
+    }
+    f();
+
+
+  </script>
+</body>
+
+</html>

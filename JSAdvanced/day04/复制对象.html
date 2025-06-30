@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 如果直接赋值，指向的是同一个对象，修改其中一个，另一个也会改变！
+    // 浅拷贝
+    // 浅拷贝只复制一层属性，没有递归复制，所以对象里面的对象还是引用类型
+    const obj = {
+      name: '张三',
+      age: 18,
+      address: {
+        city: '北京',
+        street: '朝阳区',
+      }
+    }
+    const copyObj = {}
+    Object.assign(copyObj, obj)
+    // copyObj={...obj} // 也可以使用扩展运算符进行浅拷贝
+    console.log(copyObj)
+    copyObj.name = '李四'
+    console.log(obj.name) // 张三，不会改变
+    console.log(copyObj.name) // 李四
+    copyObj.address.city = '上海'
+    console.log(obj.address.city) // 上海，会改变
+    console.log(copyObj.address.city) // 上海
+
+    // 深拷贝
+    // 深拷贝会完全复制属性，完全独立，不会引用对象
+  </script>
+</body>
+
+</html>

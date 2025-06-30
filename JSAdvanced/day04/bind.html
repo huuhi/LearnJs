@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button>发送按钮</button>
+  <script>
+    // bind不会调用函数，但是可以修改this指向
+    const obj = {
+      age: 19
+    }
+    function fn() {
+      console.log(this.age)
+    }
+    // 返回一个新的函数
+    const f = fn.bind(obj)
+    f()
+
+    const btn = document.querySelector('button');
+    btn.addEventListener('click', function () {
+      this.disabled = true;
+      // 这里必须要使用箭头函数，this指向的才是button
+      setTimeout(() => {
+        this.disabled = false;
+      }, 2000)
+    })
+  </script>
+</body>
+
+</html>

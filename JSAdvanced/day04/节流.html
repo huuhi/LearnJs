@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: darkgreen;
+      font-size: 40px;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="./lodash.min.js"></script>
+  <script>
+    // 单位时间内，频繁触发事件，只执行一次
+    const box = document.querySelector('.box')
+    let i = 1;
+    function mouseMove() {
+      box.innerHTML = i++;
+    }
+    box.addEventListener('mousemove', _.throttle(mouseMove, 300));
+
+    function throttle(fn, t) {
+      let timer = null
+      if (!timer) {
+        timer = setTimeout(function () { fn() }, t)
+        // 清空定时器，不能删除定时
+        timer = null
+      }
+    }
+  </script>
+</body>
+
+</html>

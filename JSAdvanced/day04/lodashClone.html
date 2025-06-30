@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="./lodash.min.js"></script>
+  <script>
+    const obj = {
+      name: '张三',
+      age: 18,
+      address: {
+        city: '北京',
+        street: '朝阳区',
+      }
+    }
+    const copyObj = _.cloneDeep(obj);
+    console.log(copyObj);
+    copyObj.address.city = '上海';
+    console.log(obj.address.city); // 北京，不会改变
+    console.log(copyObj.address.city); // 上海
+
+    // 使用json实现
+    const jsonCopyObj = JSON.parse(JSON.stringify(obj));
+  </script>
+</body>
+
+</html>

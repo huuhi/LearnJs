@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: darkgreen;
+      font-size: 40px;
+      ;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <script src="./lodash.min.js"></script>
+  <script>
+    const box = document.querySelector('.box')
+    let i = 1;
+    function mouseMove() {
+      box.innerHTML = i++;
+    }
+    // box.addEventListener('mousemove', _.debounce(mouseMove, 300));
+    box.addEventListener('mousemove', debounce(mouseMove, 300));
+
+    // 实现debounce
+    function debounce(fn, t) {
+      let timer
+      return function () {
+        if (timer) clearTimeout(timer)
+        timer = setTimeout(function () {
+          fn()
+        }, t)
+      }
+    }
+  </script>
+</body>
+
+</html>

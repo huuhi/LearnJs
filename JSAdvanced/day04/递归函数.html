@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+
+    // 继承版深拷贝
+    function basicDeepClone(obj) {
+      if (obj === null || typeof obj !== 'object') {
+        return obj;
+      }
+
+      if (obj instanceof Date) {
+        return new Date(obj);
+      }
+
+      if (obj instanceof RegExp) {
+        return new RegExp(obj);
+      }
+
+      const clone = Array.isArray(obj) ? [] : {};
+
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          clone[key] = basicDeepClone(obj[key]);
+        }
+      }
+
+      return clone;
+    }
+    function deepClone(obj, hash = new WeakMap()) {
+      // 处理基本类型和null/undefined
+      if (obj === null || typeof obj !== 'object') {
+        return obj;
+      }
+
+      // 处理循环引用
+      if (hash.has(obj)) {
+        return hash.get(obj);
+      }
+
+      // 处理Date
+      if (obj instanceof Date) {
+        const copy = new Date(obj);
+        hash.set(obj, copy);
+        return copy;
+      }
+
+      // 处理RegExp
+      if (obj instanceof RegExp) {
+        const copy = new RegExp(obj);
+        hash.set(obj, copy);
+        return copy;
+      }
+
+      // 处理Map
+      if (obj instanceof Map) {
+        const copy = new Map();
+        hash.set(obj, copy);
+        obj.forEach((value, key) => {
+          copy.set(deepClone(key, hash), deepClone(value, hash));
+        });
+        return copy;
+      }
+
+      // 处理Set
+      if (obj instanceof Set) {
+        const copy = new Set();
+        hash.set(obj, copy);
+        obj.forEach(value => {
+          copy.add(deepClone(value, hash));
+        });
+        return copy;
+      }
+
+      // 处理数组或普通对象
+      const copy = Array.isArray(obj) ? [] : {};
+      hash.set(obj, copy);
+
+      // 处理Symbol属性
+      const symKeys = Object.getOwnPropertySymbols(obj);
+      if (symKeys.length > 0) {
+        symKeys.forEach(symKey => {
+          copy[symKey] = deepClone(obj[symKey], hash);
+        });
+      }
+
+      // 处理普通属性
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          copy[key] = deepClone(obj[key], hash);
+        }
+      }
+
+      return copy;
+    }
+
+
+    // 测试
+    const user = {
+      name: 'John',
+      age: 30,
+      dateOfBirth: new Date('1990-01-01'),
+      hobbies: ['reading', 'gaming'],
+      address: {
+        city: 'New York',
+        zip: '10001'
+      },
+      friends: [
+        { name: 'Jane', age: 25 },
+        { name: 'Doe', age: 28 }
+      ],
+      meta: new Map([
+        ['key1', 'value1'],
+        ['key2', 'value2']
+      ]),
+      tags: new Set(['tag1', 'tag2']),
+      symbolProp: Symbol('unique')
+    }
+    const clonedUser = deepClone(user);
+    const clonedUser2 = basicDeepClone(user);
+    console.log(clonedUser);
+    console.log(clonedUser2);
+  </script>
+</body>
+
+</html>
